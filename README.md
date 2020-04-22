@@ -1,5 +1,7 @@
 ![Docker](https://github.com/Mizux/manylinux/workflows/Docker/badge.svg)
 ![Linux](https://github.com/Mizux/manylinux/workflows/Linux/badge.svg)
+![MacOS](https://github.com/Mizux/manylinux/workflows/MacOS/badge.svg)
+![Windows](https://github.com/Mizux/manylinux/workflows/Windows/badge.svg)
 
 # Manylinux
 CMake FindPython + quay.io/pypa/manylinux2010_x86_64 image issue.
