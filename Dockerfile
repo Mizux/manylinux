@@ -18,7 +18,9 @@ RUN cmake -version
 
 FROM env AS devel
 WORKDIR /home/project
+# Copy the CMake project snippet
 COPY CMakeLists.txt .
+# Copy the build script
 COPY build_manylinux.sh .
 RUN chmod a+x build_manylinux.sh
 
