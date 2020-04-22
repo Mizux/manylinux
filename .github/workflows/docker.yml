@@ -1,4 +1,4 @@
-name: Docker
+name: Manylinux2010
 
 on: [push, pull_request]
 
