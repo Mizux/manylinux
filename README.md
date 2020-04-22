@@ -12,3 +12,5 @@ According to PEP513:
 ref: https://www.python.org/dev/peps/pep-0513/#libpythonx-y-so-1
 
 So Technically, I only need the `Python_INCLUDE_DIRS` from the `Development` component and not the `Python_LIBRARIES`...
+
+FindPython use the code inside [Modules/FindPython/Support.cmake](https://gitlab.kitware.com/cmake/cmake/-/blob/master/Modules/FindPython/Support.cmake) to search each components
