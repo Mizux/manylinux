@@ -1,0 +1,11 @@
+name: Linux
+
+on: [push, pull_request]
+
+jobs:
+  Linux:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Configure
+      run: cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release
