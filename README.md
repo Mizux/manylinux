@@ -17,8 +17,54 @@ ref: https://www.python.org/dev/peps/pep-0513/#libpythonx-y-so-1
 
 So Technically, I only need the `Python_INCLUDE_DIRS` from the `Development` component and not the `Python_LIBRARIES`...
 
-## Protocol
+# Protocol
 Simply run the script [run.sh](run.sh) which will try to build the [docker image](Dockerfile).
+
+Basically the Dockerfile will:
+1. Starting from the pypa/manylinux2010 latest image.
+2. Install a recent CMake (3.16.4).
+3. Copy the [CMakeLists.txt](CMakeLists.txt) project snippet.
+4. Copy the build script [build_manylinux.sh](build_manylinux.sh).
+5. Run the build script i.e. `./build_manylinux.sh`.
+
+The script [build_manylinux.sh](build_manylinux.sh) basically do:
+1. For each recent Python 3 version available in `/opt/python/*`:
+   1. Activate a virtualenv using this python version.
+   2. Run a CMake Configure using the variable [`-DPython_FIND_VIRTUALENV=ONLY`](https://cmake.org/cmake/help/latest/module/FindPython.html#hints).
+   3. Run `cmake --build`.
+   4. Desactivate the virtualenv.
+
+## Expected
+The script should run without error.
+
+## Observed
+CMake can't finish the configure step...
+```sh
+$ /opt/python/cp35-cp35m/bin/pip install virtualenv
+...
+$ source venv_cp35-cp35m/bin/activate
+...
+$ cmake -S. -Bbuild_cp35-cp35m -DPython_FIND_VIRTUALENV=ONLY
+-- The CXX compiler identification is GNU 8.3.1
+-- Check for working CXX compiler: /opt/rh/devtoolset-8/root/usr/bin/c++
+-- Check for working CXX compiler: /opt/rh/devtoolset-8/root/usr/bin/c++ -- works
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- project: Manylinux
+-- version: 1.0
+CMake Error at /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake:146 (message):
+  Could NOT find Python (missing: Python_EXECUTABLE Python_LIBRARIES
+  Python_INCLUDE_DIRS Interpreter Development)
+Call Stack (most recent call first):
+  /usr/share/cmake-3.16/Modules/FindPackageHandleStandardArgs.cmake:393 (_FPHSA_FAILURE_MESSAGE)
+  /usr/share/cmake-3.16/Modules/FindPython.cmake:347 (find_package_handle_standard_args)
+  CMakeLists.txt:11 (find_package)
+```
+
+note: I we remove the `Development` component, then the script run without failure but we can't have access to the variable
+`Python_INCLUDE_DIRS`...
 
 ## Investigation
 `FindPython` use the code inside [Modules/FindPython/Support.cmake](https://gitlab.kitware.com/cmake/cmake/-/blob/master/Modules/FindPython/Support.cmake) to search each components.
