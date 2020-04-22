@@ -1,9 +1,13 @@
+![Docker](https://github.com/Mizux/manylinux/workflows/Docker/badge.svg)
+
 # Manylinux
 CMake FindPython + quay.io/pypa/manylinux2010_x86_64 image issue.
 
 ## Issue
 Inside the manylinux2010 image using a `virtualenv` on any `/opt/python/*` provided, CMake fail to find the `Interpreter` **AND** the `Development` component when using the built-in
 [FindPython](https://cmake.org/cmake/help/latest/module/FindPython.html) module.
+
+note: Clic on the badge to see the log...
 
 Manylinux may not provide the `libpython.*.so`.  
 According to [PEP 513 -- A Platform Tag for Portable Linux Built Distributions](https://www.python.org/dev/peps/pep-0513/):
