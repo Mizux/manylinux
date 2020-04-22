@@ -41,7 +41,7 @@ The script [build_manylinux.sh](build_manylinux.sh) basically do:
 The script should run without error.
 
 ## Observed
-CMake can't finish the configure step...
+CMake can't finish the configure step, here an example using *Python 3.5* (i.e. `cp35-cp35m`)
 ```sh
 $ /opt/python/cp35-cp35m/bin/pip install virtualenv
 ...
