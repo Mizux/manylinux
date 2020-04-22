@@ -3,7 +3,7 @@
 [![MacOS](https://github.com/Mizux/manylinux/workflows/MacOS/badge.svg)](https://github.com/Mizux/manylinux/actions?query=workflow%3AMacOS)
 [![Windows](https://github.com/Mizux/manylinux/workflows/Windows/badge.svg)](https://github.com/Mizux/manylinux/actions?query=workflow%3AWindows)
 
-# Manylinux
+# Manylinux2010 vs CMake FindPython()
 CMake FindPython + quay.io/pypa/manylinux2010_x86_64 image issue.
 
 ## Issue
