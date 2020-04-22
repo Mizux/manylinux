@@ -1,0 +1,11 @@
+name: Windows
+
+on: [push, pull_request]
+
+jobs:
+  Windows:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Configure
+      run: cmake -S. -Bbuild -G "Visual Studio 16 2019" -DCMAKE_CONFIGURATION_TYPES=Release

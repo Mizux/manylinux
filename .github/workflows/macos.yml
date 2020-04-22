@@ -1,0 +1,11 @@
+name: MacOS
+
+on: [push, pull_request]
+
+jobs:
+  MacOS:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Configure
+      run: cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release
