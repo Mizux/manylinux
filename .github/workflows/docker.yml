@@ -8,4 +8,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Docker Build
-      run: run.sh
+      run: ./run.sh
