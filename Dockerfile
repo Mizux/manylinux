@@ -3,8 +3,7 @@ FROM quay.io/pypa/manylinux2010_x86_64:latest AS env
 LABEL maintainer="mizux.dev@gmail.com"
 
 RUN yum -y update \
-&& yum -y install git wget \
-&& yum -y groupinstall "Development Tools" \
+&& yum -y install wget \
 && yum clean all \
 && rm -rf /var/cache/yum
 
