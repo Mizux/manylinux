@@ -66,7 +66,7 @@ Call Stack (most recent call first):
   CMakeLists.txt:11 (find_package)
 ```
 
-note: I we remove the `Development` component, then the script run without failure but we can't have access to the variable
+note: If we remove the `Development` component, then the script run without failure but we can't have access to the variable
 `Python_INCLUDE_DIRS`...
 
 ## Fix
