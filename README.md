@@ -69,5 +69,14 @@ Call Stack (most recent call first):
 note: I we remove the `Development` component, then the script run without failure but we can't have access to the variable
 `Python_INCLUDE_DIRS`...
 
+## Fix
+Simply create a fake library and pass it to CMake.
+```sh
+$ LIB="${PYROOT}/lib/libpython$(python -V | grep -o "[0-9]\+.[0-9]\+.[0-9]\+").so"
+$ touch "$LIB"
+$ cmake -S. "-B${BUILD_DIR}" -DPython_FIND_VIRTUALENV=ONLY -DPython_LIBRARY="${LIB}"
+```
+note: Library must exist so you can't remove the `touch`...
+
 ## Investigation
 `FindPython` use the code inside [Modules/FindPython/Support.cmake](https://gitlab.kitware.com/cmake/cmake/-/blob/master/Modules/FindPython/Support.cmake) to search each components.
