@@ -28,16 +28,12 @@ for PYROOT in /opt/python/*; do
   BUILD_DIR="build_$PYTAG"
   rm -rf "${BUILD_DIR}"
 
-  #EXE=$(find "${PYBIN}/" -name "python")
-  INC=$(find "${PYROOT}/" -name "Python.h" -exec dirname {} +)
-  LIB="${PYROOT}/lib/lib$(basename "$INC").so"
+  LIB="${PYROOT}/lib/libpython$(python -V | grep -o "[0-9]\+.[0-9]\+.[0-9]\+").so"
   touch "$LIB"
   cmake -S. "-B${BUILD_DIR}" \
     -DPython_FIND_VIRTUALENV=ONLY \
     -DPython_LIBRARY="${LIB}"
 
-    #-DPython_EXECUTABLE="${EXE}" \
-    #-DPython_INCLUDE_DIR="${INC}" \
   cmake --build "${BUILD_DIR}" -v
 
   # Restore environment
